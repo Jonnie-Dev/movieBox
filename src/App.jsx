@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { Route, Routes, Link } from "react-router-dom";
 import "./App.css";
+import SideBar from "./components/SideBar";
+import MainContent from "./components/MainContent";
+
+const apiKey = import.meta.env.VITE_API_KEY;
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1 className="text-3xl font-normal underline">Hello world!</h1>
-    </>
+    <div className="font-dm-sans flex lg:gap-12 gap-2">
+      <SideBar />
+      <MainContent />
+    </div>
   );
 }
 
