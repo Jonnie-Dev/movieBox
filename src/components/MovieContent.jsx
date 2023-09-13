@@ -1,5 +1,5 @@
-import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import loading from "../assets/loading-1.gif";
 import { Star1, Back } from "iconsax-react";
