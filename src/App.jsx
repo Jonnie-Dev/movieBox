@@ -10,6 +10,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [activeSection, setActiveSection] = useState("true");
+  const RatedURL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
   return (
     <div className="font-dm-sans flex lg:gap-12 gap-2">
       <Routes>
@@ -38,7 +39,14 @@ function App() {
           />
           <Route
             path={`/movie/:id`}
-            element={<MovieContent apiKey={apiKey} />}
+            element={
+              <MovieContent
+                RatedURL={RatedURL}
+                activeSection={activeSection}
+                setActiveSection={setActiveSection}
+                apiKey={apiKey}
+              />
+            }
           />
         </Route>
         <Route

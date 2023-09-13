@@ -8,7 +8,7 @@ export default function SideBar({ activeSection, setActiveSection }) {
 
   return (
     <>
-      <section className="flex [&>*]:flex [&>*]:cursor-pointer flex-col gap-12 py-8 lg:w-[15%] border-r-4 h-[100vh] ">
+      <section className="flex [&>*]:flex  flex-col gap-12 py-8 lg:w-[15%] border-r-4 h-[100vh] ">
         <Link to="/">
           <div
             onClick={() => setActiveSection(true)}
@@ -18,7 +18,7 @@ export default function SideBar({ activeSection, setActiveSection }) {
             <p className="font-bold text-xl">MovieBox</p>
           </div>
         </Link>
-        <nav className="lg:[&>*>p]:block text-lg font-medium flex-col gap-8 [&>*>p]:hidden [&>div]:flex lg:[&>div]:px-8 [&>div]:px-4 [&>div]:justify-start [&>div]:items-center [&>div]:p-[1rem] [&>div]:gap-4">
+        <nav className="[&>*]:cursor-pointer lg:[&>*>p]:block text-lg font-medium flex-col gap-8 [&>*>p]:hidden [&>div]:flex lg:[&>div]:px-8 [&>div]:px-4 [&>div]:justify-start [&>div]:items-center [&>div]:p-[1rem] [&>div]:gap-4">
           <div className={`${activeSection && active}`}>
             <Home2 size="28" />
             <p>Home</p>

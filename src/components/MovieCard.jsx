@@ -40,7 +40,7 @@ export default function MovieCard({
     >
       <div className="">
         <img
-          className="w-[100%]"
+          className="w-[100%] lg:h-[450px] h-[300px] object-cover object-top"
           src={`https://image.tmdb.org/t/p/w500/${imgSrc}`}
           alt={`${movieTitle} poster image`}
         />

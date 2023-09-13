@@ -4,7 +4,7 @@ import axios from "axios";
 import loading from "../assets/loading-1.gif";
 import { Star1, Back } from "iconsax-react";
 
-export default function MovieContent({ apiKey }) {
+export default function MovieContent({ apiKey, setActiveSection }) {
   const { id } = useParams();
   const [movieData, setMovieData] = useState({});
   const [lazyLoad, setLazyLoad] = useState(true);
@@ -46,6 +46,8 @@ export default function MovieContent({ apiKey }) {
     fetchData();
   }, []);
 
+  useEffect(() => setActiveSection(false), []);
+
   if (errorMsg) {
     return (
       <div className="py-8 text-center lg:pr-12 pr-2 w-[100%]">
@@ -59,6 +61,15 @@ export default function MovieContent({ apiKey }) {
       </div>
     );
   }
+
+  // Change page title when Component mounts and revert to default when component unmounts
+  useEffect(() => {
+    document.title = movieData.title || "Movie Box";
+
+    return function () {
+      document.title = "Movie Box";
+    };
+  }, [movieData.title]);
 
   return (
     <>
@@ -95,8 +106,18 @@ export default function MovieContent({ apiKey }) {
               </div>
             </div>
           </div>
-          <p className="mb-2 text-base italic">{movieData.tagline}</p>
-          <p className="text-xl ">{movieData.overview}</p>
+          <p className="text-base italic">{movieData.tagline}</p>
+          <p className="my-2  text-xl ">{movieData.overview}</p>
+          <p>
+            {movieData.genres.map((el, i) => (
+              <span
+                className="cursor-pointer px-2 bg-[#BE123C] inline-block text-white rounded-lg mr-2"
+                key={i}
+              >
+                {el.name}{" "}
+              </span>
+            ))}
+          </p>
         </section>
       )}
     </>
