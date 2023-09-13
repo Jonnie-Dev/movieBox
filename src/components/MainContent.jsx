@@ -76,7 +76,7 @@ export default function MainContent({
   }
 
   return (
-    <main className="w-[100%] my-4">
+    <main className="page-transition w-[100%] my-4">
       <nav className="lg:pr-8 px-2 my-8 gap-4 flex justify-between flex-wrap">
         <div className="flex items-center gap-4">
           {URL == searchURL && (

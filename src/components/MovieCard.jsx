@@ -37,10 +37,10 @@ export default function MovieCard({
     <div
       data-testid:movie-card
       onClick={() => setActiveSection(false)}
-      className="relative lg:w-[300px] w-[200px] flex gap-2 flex-col justify-center items-start"
+      className="relative  lg:w-[300px] w-[200px] flex gap-2 flex-col justify-center items-start"
     >
       {imgSrc && (
-        <div className=" absolute top-4 p-2 right-4 z-10 bg-gray-500 rounded-full">
+        <div className="drop-shadow-2xl hover:bg-[#7C2D12] absolute top-4 p-2 right-4 z-10 bg-gray-500 rounded-full">
           <img src={Heart} alt="heart svg logo" />
         </div>
       )}

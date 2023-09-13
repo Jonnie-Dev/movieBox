@@ -12,7 +12,7 @@ function App() {
   const [activeSection, setActiveSection] = useState("true");
   const RatedURL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
   return (
-    <div className="font-dm-sans  flex lg:gap-12 gap-2">
+    <div className="font-dm-sans page-transition flex lg:gap-12 gap-2">
       <Routes>
         <Route
           path="/"

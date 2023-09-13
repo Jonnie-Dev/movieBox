@@ -8,7 +8,7 @@ export default function SideBar({ activeSection, setActiveSection }) {
 
   return (
     <>
-      <section className="flex [&>*]:flex  flex-col gap-12 py-8 lg:w-[15%] border-r-4 h-[100vh] ">
+      <section className="page-transition flex [&>*]:flex  flex-col gap-12 py-8 lg:w-[15%] border-r-4 h-[100vh] ">
         <Link to="/">
           <div
             onClick={() => setActiveSection(true)}

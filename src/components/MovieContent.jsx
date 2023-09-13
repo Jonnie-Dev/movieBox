@@ -78,7 +78,7 @@ export default function MovieContent({ apiKey, setActiveSection }) {
           <img src={loading} alt="loadig svg" />
         </div>
       ) : (
-        <section className="h-[100vh] overflow-y-scroll lg:pr-12 pr-2 py-8">
+        <section className="page-transition h-[100vh] overflow-y-scroll lg:pr-12 pr-2 py-8">
           <div className="h-[50%] lgw-[80vw] w-[100%] ">
             <img
               className="movie-poster w-full h-full object-cover object-top rounded-2xl"
