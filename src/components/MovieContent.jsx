@@ -81,18 +81,20 @@ export default function MovieContent({ apiKey, setActiveSection }) {
         <section className="h-[100vh] overflow-y-scroll lg:pr-12 pr-2 py-8">
           <div className="h-[50%] lgw-[80vw] w-[100%] ">
             <img
-              className="w-full h-full object-cover object-top rounded-2xl"
+              className="movie-poster w-full h-full object-cover object-top rounded-2xl"
               src={`https://image.tmdb.org/t/p/original/${movieData.backdrop_path}`}
             />
           </div>
           <div>
             <div className="my-4 px-2 flex flex-wrap gap-2 justify-between items-center">
               <div className="flex flex-wrap md:gap-8 items-center gap-2 text-2xl font-semibold">
-                <h1 className="">{movieData.title}</h1>
+                <h1 data-testid:movie-title className="">
+                  {movieData.title}
+                </h1>
                 <p>•</p>
-                <p className="">{movieData.release_date}</p>
+                <p data-testid:movie-release-date>{movieData.release_date}</p>
                 <p>•</p>
-                <p>{movieData.runtime} mins</p>
+                <p data-testid:movie-runtime>{movieData.runtime} mins</p>
                 <p className="text-lg font-medium px-2 bg-[#BE123C] inline-block text-white rounded-lg">
                   {movieData.status}
                 </p>
@@ -107,7 +109,9 @@ export default function MovieContent({ apiKey, setActiveSection }) {
             </div>
           </div>
           <p className="text-base italic">{movieData.tagline}</p>
-          <p className="my-2  text-xl ">{movieData.overview}</p>
+          <p data-testid:movie-overview className="my-2  text-xl ">
+            {movieData.overview}
+          </p>
           <p>
             {movieData.genres.map((el, i) => (
               <span

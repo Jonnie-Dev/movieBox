@@ -1,6 +1,6 @@
 import imdb from "../assets/imdb.svg";
 import tomato from "../assets/tomato.svg";
-
+import Heart from "../assets/Heart.svg";
 const genreList = {
   28: "Action",
   12: "Adventure",
@@ -35,20 +35,32 @@ export default function MovieCard({
 
   return (
     <div
+      data-testid:movie-card
       onClick={() => setActiveSection(false)}
-      className="lg:w-[300px] w-[200px] flex gap-2 flex-col justify-center items-start"
+      className="relative lg:w-[300px] w-[200px] flex gap-2 flex-col justify-center items-start"
     >
-      <div className="">
+      {imgSrc && (
+        <div className=" absolute top-4 p-2 right-4 z-10 bg-gray-500 rounded-full">
+          <img src={Heart} alt="heart svg logo" />
+        </div>
+      )}
+      <div>
         <img
-          className="w-[100%] lg:h-[450px] h-[300px] object-cover object-top"
+          data-testid:movie-poster
+          className="hover:brightness-75 transition ease-in-out duration-150  movie-poster w-[100%] lg:h-[450px] h-[300px] object-cover object-top"
           src={`https://image.tmdb.org/t/p/w500/${imgSrc}`}
           alt={`${movieTitle} poster image`}
         />
       </div>
-      <p className="font-medium text-[16px] text-[#858b95]">
+      <p
+        data-testid:movie-release-date
+        className="font-medium text-[16px] text-[#858b95]"
+      >
         Release date: <span>{releaseDate}</span>
       </p>
-      <h2 className="font-bold text-lg">{movieTitle}</h2>
+      <h2 data-testid:movie-title className="font-bold text-lg">
+        {movieTitle}
+      </h2>
       <div className="flex justify-between w-full">
         <div className="flex gap-2">
           <img src={imdb} alt="IMDB Logo" />
