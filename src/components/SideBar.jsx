@@ -1,27 +1,29 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link, useParams } from "react-router-dom";
 import logo from "../assets/tv.svg";
-import { Link } from "react-router-dom";
-// import { useState, useEffect } from "react";
 import { Home2, Calendar, Video, Play } from "iconsax-react";
-export default function SideBar() {
+
+export default function SideBar({ activeSection, setActiveSection }) {
   const active =
     "text-[#BE123C] bg-[#ff8eaa3b] border-r-[6px] border-r-[#BE123C] font-bold";
 
   return (
     <>
-      <section className="flex [&>*]:flex [&>*]:cursor-pointer flex-col gap-12 py-8 lg:w-[15%] w-[50%] border-r-4 h-[100vh] ">
+      <section className="flex [&>*]:flex [&>*]:cursor-pointer flex-col gap-12 py-8 lg:w-[15%] border-r-4 h-[100vh] ">
         <Link to="/">
-          <div className="flex cursor-pointer lg:[&>p]:block [&>p]:hidden px-4 justify-start items-center gap-2">
+          <div
+            onClick={() => setActiveSection(true)}
+            className="flex cursor-pointer lg:[&>p]:block [&>p]:hidden px-4 justify-start items-center gap-2"
+          >
             <img src={logo} alt="movie box logo" />
             <p className="font-bold text-xl">MovieBox</p>
           </div>
         </Link>
         <nav className="lg:[&>*>p]:block text-lg font-medium flex-col gap-8 [&>*>p]:hidden [&>div]:flex lg:[&>div]:px-8 [&>div]:px-4 [&>div]:justify-start [&>div]:items-center [&>div]:p-[1rem] [&>div]:gap-4">
-          <div className={`${active}`}>
+          <div className={`${activeSection && active}`}>
             <Home2 size="28" />
             <p>Home</p>
           </div>
-          <div>
+          <div className={`${!activeSection && active}`}>
             <Video size="28" />
             <p>Movies</p>
           </div>

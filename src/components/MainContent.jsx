@@ -5,16 +5,24 @@ import { SearchNormal } from "iconsax-react";
 import MovieCard from "./MovieCard";
 import loading from "../assets/loading-1.gif";
 
-export default function MainContent({ apiKey }) {
+export default function MainContent({
+  apiKey,
+  activeSection,
+  setActiveSection,
+}) {
   const [ratedMovies, setRatedMovies] = useState([]);
   const URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
   let [lazyLoad, setLazyLoad] = useState(true);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     const fetchData = async () => {
       try {
         setLazyLoad(true);
-        let res = await axios.get(URL);
+        let res = await axios.get(URL, {
+          signal: abortController.signal,
+        });
         setRatedMovies(res.data.results.slice(0, 10));
         setLazyLoad(false);
       } catch (error) {
@@ -27,8 +35,13 @@ export default function MainContent({ apiKey }) {
         }
       }
     };
+
+    () => {
+      abortController.abort();
+    };
     fetchData();
   }, []);
+
   return (
     <main className="w-[100%] my-4">
       <nav className="lg:pr-8 px-2 my-8 gap-4 flex justify-between flex-wrap">
@@ -50,8 +63,9 @@ export default function MainContent({ apiKey }) {
       ) : (
         <div className="flex flex-wrap gap-8 justify-center pr-8">
           {ratedMovies.map((el) => (
-            <Link key={el.id} to={`/movie/:${el.id}`}>
+            <Link key={el.id} to={`/movie/${el.id}`}>
               <MovieCard
+                setActiveSection={setActiveSection}
                 key={el.id}
                 imgSrc={el.poster_path}
                 movieTitle={el["original_title"]}

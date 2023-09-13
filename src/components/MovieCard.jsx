@@ -24,6 +24,7 @@ const genreList = {
 };
 
 export default function MovieCard({
+  setActiveSection,
   imgSrc = "image path",
   movieTitle = "movie title",
   rating = "rating / 10",
@@ -33,12 +34,17 @@ export default function MovieCard({
   const randomRating = Math.floor(Math.random() * 31) + 70;
 
   return (
-    <div className="flex gap-2 flex-col justify-center items-start">
-      <img
-        className="lg:w-[300px] w-[200px]"
-        src={`https://image.tmdb.org/t/p/w500/${imgSrc}`}
-        alt={`${movieTitle} poster image`}
-      />
+    <div
+      onClick={() => setActiveSection(false)}
+      className="lg:w-[300px] w-[200px] flex gap-2 flex-col justify-center items-start"
+    >
+      <div className="">
+        <img
+          className="w-[100%]"
+          src={`https://image.tmdb.org/t/p/w500/${imgSrc}`}
+          alt={`${movieTitle} poster image`}
+        />
+      </div>
       <p className="font-medium text-[16px] text-[#858b95]">
         Release date: <span>{releaseDate}</span>
       </p>
