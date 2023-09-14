@@ -101,7 +101,10 @@ export default function MovieContent({ apiKey, setActiveSection }) {
                   {movieData.title}
                 </h1>
                 <p>•</p>
-                <p data-testid:movie-release-date>{movieData.release_date}</p>
+                <p data-testid:movie-release-date>
+                  {/* {movieData.release_date} */}
+                  {new Date(movieData.release_date).toISOString()}
+                </p>
                 <p>•</p>
                 <p data-testid:movie-runtime>{movieData.runtime} mins</p>
                 <p className="text-lg font-medium px-2 bg-[#BE123C] inline-block text-white rounded-lg">
