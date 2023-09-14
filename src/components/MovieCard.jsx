@@ -68,11 +68,9 @@ export default function MovieCard({
             alt={`${movieTitle} poster image`}
           />
         </div>
-        <p
-          data-testid:movie-release-date
-          className="font-medium text-[16px] text-[#858b95]"
-        >
-          Release date: <span>{releaseDate}</span>
+        <p className="font-medium text-[16px] text-[#858b95]">
+          Release date:{" "}
+          <span data-testid:movie-release-date>{releaseDate}</span>
         </p>
         <h2 data-testid:movie-title className="font-bold text-lg">
           {movieTitle}

@@ -24,7 +24,7 @@ export default function MainContent({
   const [lazyLoad, setLazyLoad] = useState(true);
 
   useEffect(() => {
-    setURL(() => (searchInput.length > 3 ? searchURL : RatedURL));
+    setURL(() => (searchInput.length >= 3 ? searchURL : RatedURL));
   }, [searchInput]);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export default function MainContent({
 
         setRatedMovies(res.data.results.slice(0, 10));
         setLazyLoad(false);
+        setErrorMsg("");
       } catch (error) {
         if (error.name !== "CanceledError") {
           if (error.response) {

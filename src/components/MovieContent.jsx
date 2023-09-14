@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import loading from "../assets/loading-1.gif";
-import { Star1, Back } from "iconsax-react";
+import ratedLogo from "../assets/18.svg";
+import { Star1, Back, Slash } from "iconsax-react";
 
 export default function MovieContent({ apiKey, setActiveSection }) {
   const { id } = useParams();
@@ -23,19 +24,24 @@ export default function MovieContent({ apiKey, setActiveSection }) {
         });
         setMovieData(res.data);
         setLazyLoad(false);
+        setErrorMsg("");
       } catch (error) {
-        if (error.response) {
-          if (
-            error.response.data.status_message ==
-            "The resource you requested could not be found."
-          )
-            setErrorMsg("Requested Movie Not Found");
-        } else if (error.request) {
-          console.error("No response received. Check your network connection.");
-          setErrorMsg("No response received. Check your network connection.");
-        } else {
-          console.error("An error occurred:", error.message);
-          setErrorMsg(`An error occurred: ${error.message}`);
+        if (error.name !== "CanceledError") {
+          if (error.response) {
+            if (
+              error.response.data.status_message ==
+              "The resource you requested could not be found."
+            )
+              setErrorMsg("Requested Movie Not Found");
+          } else if (error.request) {
+            console.error(
+              "No response received. Check your network connection."
+            );
+            setErrorMsg("No response received. Check your network connection.");
+          } else {
+            console.error("An error occurred:", error.message);
+            setErrorMsg(`An error occurred: ${error.message}`);
+          }
         }
       }
 
@@ -48,20 +54,6 @@ export default function MovieContent({ apiKey, setActiveSection }) {
 
   useEffect(() => setActiveSection(false), []);
 
-  if (errorMsg) {
-    return (
-      <div className="py-8 text-center lg:pr-12 pr-2 w-[100%]">
-        <h1 className="text-2xl mb-4 font-semibold ">{errorMsg}</h1>
-        <Link to="/">
-          <button className="text-lg flex justify-center items-center gap-2  mx-auto">
-            {" "}
-            <Back size="28" color="#BE123C" /> Return home
-          </button>
-        </Link>
-      </div>
-    );
-  }
-
   // Change page title when Component mounts and revert to default when component unmounts
   useEffect(() => {
     document.title = movieData.title || "Movie Box";
@@ -70,6 +62,23 @@ export default function MovieContent({ apiKey, setActiveSection }) {
       document.title = "Movie Box";
     };
   }, [movieData.title]);
+
+  if (errorMsg) {
+    return (
+      <div className="py-8 text-center lg:pr-12 pr-2 w-[100%]">
+        <h1 className="text-2xl mb-4 font-semibold ">{errorMsg}</h1>
+        <Link to="/">
+          <button
+            onClick={() => setActiveSection(true)}
+            className="text-lg flex justify-center items-center gap-2  mx-auto"
+          >
+            {" "}
+            <Back size="28" color="#BE123C" /> Return home
+          </button>
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -98,6 +107,8 @@ export default function MovieContent({ apiKey, setActiveSection }) {
                 <p className="text-lg font-medium px-2 bg-[#BE123C] inline-block text-white rounded-lg">
                   {movieData.status}
                 </p>
+                {movieData.adult && <Slash size="24" color="#BE123C" />}
+                {/* <img src={ratedLogo} width={"100%"} /> */}
               </div>
               <div className="flex items-center gap-2">
                 <Star1 size="32" color="#BE123C" variant="Bold" />
