@@ -1,6 +1,6 @@
-import { Outlet, Link, useParams } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import logo from "../assets/tv.svg";
-import { Home2, Calendar, Video, Play } from "iconsax-react";
+import { Home2, Calendar, Video, Like1 } from "iconsax-react";
 
 export default function SideBar({ activeSection, setActiveSection }) {
   const active =
@@ -8,7 +8,7 @@ export default function SideBar({ activeSection, setActiveSection }) {
 
   return (
     <>
-      <section className="page-transition flex [&>*]:flex  flex-col gap-12 py-8 lg:w-[15%] border-r-4 h-[100vh] ">
+      <section className="page-transition flex [&>*]:flex  flex-col gap-12 py-8 lg:w-[15%] border-r-4 h-[100vh] rounded-r-2xl lg:rounded-r-[48px]">
         <Link to="/">
           <div
             onClick={() => setActiveSection(true)}
@@ -28,8 +28,8 @@ export default function SideBar({ activeSection, setActiveSection }) {
             <p>Movies</p>
           </div>
           <div>
-            <Play size="28" />
-            <p>TV Series</p>
+            <Like1 size="28" />
+            <p>Favorites</p>
           </div>
           <div>
             <Calendar size="28" />

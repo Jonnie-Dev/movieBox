@@ -107,20 +107,19 @@ export default function MainContent({
           <img src={loading} alt="loadig svg" />
         </div>
       ) : (
-        <div className="flex flex-wrap gap-8 justify-center pr-8">
+        <div className="flex flex-wrap gap-8 justify-center items-start pr-8">
           {ratedMovies.length > 0 ? (
             ratedMovies.map((el) => (
-              <Link key={el.id} to={`/movie/${el.id}`}>
-                <MovieCard
-                  setActiveSection={setActiveSection}
-                  key={el.id}
-                  imgSrc={el.poster_path}
-                  movieTitle={el["original_title"]}
-                  rating={el["vote_average"]}
-                  genres={el.genre_ids}
-                  releaseDate={el.release_date}
-                />
-              </Link>
+              <MovieCard
+                to={`/movie/${el.id}`}
+                setActiveSection={setActiveSection}
+                key={el.id}
+                imgSrc={el.poster_path}
+                movieTitle={el["original_title"]}
+                rating={el["vote_average"]}
+                genres={el.genre_ids}
+                releaseDate={el.release_date}
+              />
             ))
           ) : (
             <ErrorMessage
