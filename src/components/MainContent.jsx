@@ -85,7 +85,7 @@ export default function MainContent({
               <Back size="32" />
             </button>
           )}
-          <h1 className="font-bold text-4xl">
+          <h1 className="font-bold md:text-4xl text-2xl">
             {URL == RatedURL
               ? "Featured Movies"
               : `Results for "${searchInput}"`}
