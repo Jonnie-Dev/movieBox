@@ -97,16 +97,14 @@ export default function MovieContent({ apiKey, setActiveSection }) {
           <div>
             <div className="my-4 px-2 flex flex-wrap gap-2 justify-between items-center">
               <div className="flex flex-wrap md:gap-8 items-center gap-2 text-2xl font-semibold">
-                <h1 data-testid:movie-title className="">
-                  {movieData.title}
-                </h1>
+                <h1 data-testid="movie-title">{movieData.title}</h1>
                 <p>•</p>
-                <p data-testid:movie-release-date>
+                <p data-testid="movie-release-date">
                   {/* {movieData.release_date} */}
                   {new Date(movieData.release_date).toISOString()}
                 </p>
                 <p>•</p>
-                <p data-testid:movie-runtime>{movieData.runtime} mins</p>
+                <p data-testid="movie-runtime">{movieData.runtime} mins</p>
                 <p className="text-lg font-medium px-2 bg-[#BE123C] inline-block text-white rounded-lg">
                   {movieData.status}
                 </p>
@@ -123,7 +121,7 @@ export default function MovieContent({ apiKey, setActiveSection }) {
             </div>
           </div>
           <p className="text-base italic">{movieData.tagline}</p>
-          <p data-testid:movie-overview className="my-2  text-xl ">
+          <p data-testid="movie-overview" className="my-2  text-xl ">
             {movieData.overview}
           </p>
           <p>
